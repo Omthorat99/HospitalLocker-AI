@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --primary: #0f4c81;
+  --primary-dark: #0b3b64;
+  --primary-light: #eaf4fb;
+
+  --teal: #0f766e;
+  --teal-light: #e8f7f5;
+
+  --success: #15803d;
+  --success-light: #ecfdf3;
+
+  --warning: #b45309;
+  --warning-light: #fff7ed;
+
+  --danger: #dc2626;
+  --danger-light: #fef2f2;
+
+  --background: #f5f9fc;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+
+  --text-primary: #16324f;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+
+  --shadow-sm: 0 2px 8px rgba(15, 76, 129, 0.06);
+  --shadow-md: 0 8px 24px rgba(15, 76, 129, 0.09);
+  --shadow-lg: 0 16px 40px rgba(15, 76, 129, 0.12);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: #cfe8f7;
+  color: var(--primary-dark);
+}
+
+/* =========================
+   PAGE ANIMATION
+========================= */
+
+.page-enter {
+  animation: pageEnter 0.45s ease-out both;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.hl-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.hl-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: #cbd5e1;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.hl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 17px;
+  font-size: 14px;
+  font-weight: 600;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.hl-btn:hover {
+  transform: translateY(-1px);
+}
+
+.hl-btn:active {
+  transform: translateY(0);
+}
+
+.hl-btn-primary {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(15, 76, 129, 0.2);
+}
+
+.hl-btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+.hl-btn-secondary {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.hl-btn-success {
+  background: var(--success);
+  color: white;
+}
+
+.hl-btn-danger {
+  background: var(--danger);
+  color: white;
+}
+
+/* =========================
+   STATUS BADGES
+========================= */
+
+.hl-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.hl-badge-success {
+  background: var(--success-light);
+  color: var(--success);
+}
+
+.hl-badge-warning {
+  background: var(--warning-light);
+  color: var(--warning);
+}
+
+.hl-badge-danger {
+  background: var(--danger-light);
+  color: var(--danger);
+}
+
+.hl-badge-info {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+.hl-input,
+.hl-select,
+.hl-textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  background: white;
+  color: var(--text-primary);
+  border-radius: 10px;
+  padding: 12px 14px;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.hl-input:focus,
+.hl-select:focus,
+.hl-textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(15, 76, 129, 0.1);
+}
+
+.hl-textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.hl-pulse {
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.55;
+  }
+}
+
+/* =========================
+   SUCCESS ANIMATION
+========================= */
+
+.hl-success-icon {
+  animation: successPop 0.45s ease-out both;
+}
+
+@keyframes successPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+
+  70% {
+    transform: scale(1.08);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================
+   QR ANIMATION
+========================= */
+
+.hl-qr {
+  animation: qrAppear 0.5s ease-out both;
+}
+
+@keyframes qrAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  .hl-card {
+    border-radius: 12px;
+  }
+
+  .hl-btn {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
