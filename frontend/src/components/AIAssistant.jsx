@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import {
   Bot,
@@ -7,6 +8,11 @@ import {
   ShieldCheck,
   LoaderCircle,
 } from "lucide-react";
+
+// Backend URL: local during development, configurable for deployment
+const API_BASE_URL = (
+  import.meta.env.VITE_API_URL || "http://localhost:5000"
+).replace(/\/$/, "");
 
 export default function AIAssistant() {
   const [open, setOpen] = useState(false);
@@ -20,6 +26,7 @@ export default function AIAssistant() {
     },
   ]);
 
+  // Read available patient records from browser storage
   const getPatientContext = () => {
     let referral = null;
     let consultation = null;
@@ -48,6 +55,7 @@ export default function AIAssistant() {
     };
   };
 
+  // Send message to backend AI
   const sendMessage = async (text = message) => {
     const userMessage = text.trim();
 
@@ -68,7 +76,7 @@ export default function AIAssistant() {
       const patientContext = getPatientContext();
 
       const response = await fetch(
-        "http://localhost:5000/api/ai/assistant",
+        `${API_BASE_URL}/api/ai/assistant`,
         {
           method: "POST",
           headers: {
@@ -91,7 +99,7 @@ export default function AIAssistant() {
         ...prev,
         {
           role: "assistant",
-          text: data.reply,
+          text: data.reply || "No response was received.",
         },
       ]);
     } catch (error) {
@@ -237,26 +245,18 @@ export default function AIAssistant() {
           right: 24px;
           bottom: 24px;
           z-index: 99999;
-
           display: flex;
           align-items: center;
           gap: 9px;
-
           border: none;
           border-radius: 999px;
-
           padding: 13px 19px;
-
           background: #0f4c81;
           color: white;
-
           font-size: 14px;
           font-weight: 700;
-
           cursor: pointer;
-
           box-shadow: 0 8px 25px rgba(15, 76, 129, 0.28);
-
           transition: all 0.2s ease;
         }
 
@@ -270,18 +270,13 @@ export default function AIAssistant() {
           right: 24px;
           bottom: 24px;
           z-index: 99999;
-
           width: 380px;
           max-width: calc(100vw - 32px);
-
           background: white;
           border: 1px solid #dbe7f0;
           border-radius: 18px;
-
           overflow: hidden;
-
           box-shadow: 0 20px 50px rgba(15, 50, 80, 0.22);
-
           animation: aiSlideUp 0.25s ease;
         }
 
@@ -290,7 +285,6 @@ export default function AIAssistant() {
             opacity: 0;
             transform: translateY(15px) scale(0.98);
           }
-
           to {
             opacity: 1;
             transform: translateY(0) scale(1);
@@ -301,9 +295,7 @@ export default function AIAssistant() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-
           padding: 16px 18px;
-
           background: #0f4c81;
           color: white;
         }
@@ -317,13 +309,10 @@ export default function AIAssistant() {
         .ai-icon {
           width: 38px;
           height: 38px;
-
           display: flex;
           align-items: center;
           justify-content: center;
-
           border-radius: 11px;
-
           background: rgba(255, 255, 255, 0.15);
         }
 
@@ -335,7 +324,6 @@ export default function AIAssistant() {
         .ai-header span {
           display: block;
           margin-top: 2px;
-
           font-size: 11px;
           opacity: 0.8;
         }
@@ -343,17 +331,13 @@ export default function AIAssistant() {
         .ai-close {
           width: 32px;
           height: 32px;
-
           display: flex;
           align-items: center;
           justify-content: center;
-
           border: none;
           border-radius: 8px;
-
           background: transparent;
           color: white;
-
           cursor: pointer;
         }
 
@@ -365,34 +349,25 @@ export default function AIAssistant() {
           display: flex;
           align-items: center;
           gap: 7px;
-
           padding: 9px 14px;
-
           background: #e8f7f5;
           color: #0f766e;
-
           font-size: 11px;
           font-weight: 600;
         }
 
         .ai-messages {
           height: 280px;
-
           overflow-y: auto;
-
           padding: 15px;
-
           background: #f5f9fc;
         }
 
         .ai-message {
           max-width: 85%;
-
           margin-bottom: 10px;
           padding: 10px 12px;
-
           border-radius: 12px;
-
           font-size: 13px;
           line-height: 1.5;
           white-space: pre-wrap;
@@ -400,21 +375,16 @@ export default function AIAssistant() {
 
         .bot-message {
           margin-right: auto;
-
           background: white;
           border: 1px solid #e0eaf1;
-
           color: #16324f;
-
           border-bottom-left-radius: 4px;
         }
 
         .user-message {
           margin-left: auto;
-
           background: #0f4c81;
           color: white;
-
           border-bottom-right-radius: 4px;
         }
 
@@ -436,38 +406,28 @@ export default function AIAssistant() {
 
         .quick-questions {
           padding: 10px 14px;
-
           border-top: 1px solid #e6edf2;
         }
 
         .quick-title {
           margin-bottom: 7px;
-
           color: #64748b;
-
           font-size: 11px;
           font-weight: 700;
         }
 
         .quick-questions button {
           display: block;
-
           width: 100%;
-
           margin-bottom: 6px;
           padding: 8px 10px;
-
           border: 1px solid #d8e5ed;
           border-radius: 8px;
-
           background: white;
           color: #16324f;
-
           text-align: left;
           font-size: 11px;
-
           cursor: pointer;
-
           transition: all 0.15s ease;
         }
 
@@ -479,25 +439,18 @@ export default function AIAssistant() {
         .ai-input-area {
           display: flex;
           gap: 8px;
-
           padding: 11px 14px;
-
           border-top: 1px solid #e6edf2;
           background: white;
         }
 
         .ai-input-area input {
           flex: 1;
-
           min-width: 0;
-
           padding: 10px 12px;
-
           border: 1px solid #d5e2ea;
           border-radius: 9px;
-
           outline: none;
-
           color: #16324f;
           font-size: 12px;
         }
@@ -509,17 +462,13 @@ export default function AIAssistant() {
         .ai-input-area button {
           width: 38px;
           height: 38px;
-
           display: flex;
           align-items: center;
           justify-content: center;
-
           border: none;
           border-radius: 9px;
-
           background: #0f4c81;
           color: white;
-
           cursor: pointer;
         }
 
@@ -530,14 +479,10 @@ export default function AIAssistant() {
 
         .ai-disclaimer {
           padding: 8px 14px 12px;
-
           background: white;
-
           color: #94a3b8;
-
           font-size: 9px;
           line-height: 1.4;
-
           text-align: center;
         }
 

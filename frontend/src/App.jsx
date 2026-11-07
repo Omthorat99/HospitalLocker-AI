@@ -44,6 +44,9 @@ import HospitalDashboard from "./pages/hospital/HospitalDashboard";
 import ReferralSearch from "./pages/hospital/ReferralSearch";
 import PatientAccess from "./pages/hospital/PatientAccess";
 
+//login
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
 
 function Home() {
   const portals = [
@@ -259,7 +262,7 @@ function Home() {
 
             return (
               <Link
-                to={portal.path}
+                to={`/login?role=${portal.path.replace("/", "")}`}
                 className="portal-card"
                 key={portal.title}
               >
@@ -1282,10 +1285,14 @@ function Home() {
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
+     <Routes>
 
-        {/* HOME */}
-        <Route path="/" element={<Home />} />
+  {/* HOME */}
+  <Route path="/" element={<Home />} />
+
+  {/* AUTHENTICATION */}
+  <Route path="/login" element={<Login />} />
+  <Route path="/register" element={<Register />} />
 
         {/* PATIENT */}
         <Route path="/patient" element={<PatientDashboard />} />
